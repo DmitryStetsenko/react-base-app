@@ -2,7 +2,7 @@ import React from 'react';
 
 const PostItem = ({post}) => {
     const {id, title, body} = post;
-    
+
     return (
         <div className="post">
             <div className="post__contents">
@@ -17,3 +17,5 @@ const PostItem = ({post}) => {
 }
 
 export default PostItem;
+
+
