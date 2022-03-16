@@ -1,0 +1,29 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: sans-serif;
+}
+
+.App {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.post {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 2px solid teal;
+    margin-bottom: 20px;
+}
+.post:last-child {
+    margin-bottom: 0;
+}
+
+.post__content {}
+.post__btns {}
