@@ -1,11 +1,12 @@
-import './App.css';
+import PostItem from './components/PostItem';
+import './styles/App.css';
 
 function App() {
-  return (
-    <div className="App">
-      <h1>App</h1>
-    </div>
-  );
+	return (
+		<div className="App">
+			<PostItem post={ {id: 1, title: 'JavaScript', body: 'description'} }/>
+		</div>
+	);
 }
 
 export default App;
