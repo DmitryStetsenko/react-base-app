@@ -1,0 +1,14 @@
+.myInput {
+    display: block;
+    padding: 5px 15px;
+    font-size: 14px;
+    color: teal;
+    background: transparent;
+    border: 1px solid teal;
+    width: 100%;
+    margin: 5px 0;
+}
+
+.myInput:focus {
+    outline: 1px solid teal;
+}
