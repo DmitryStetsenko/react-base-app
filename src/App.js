@@ -13,12 +13,38 @@ const App = () => {
         {id: 3, title: 'JavaScript3', body: 'description'}
     ]);
 
+	const [title, setTitle] = useState();
+	const [body, setBody] = useState();
+
+	const addNewPost = (e) => {
+		e.preventDefault();
+		const newPost  = {
+			id: Date.now(),
+			title, 
+			body
+		}
+
+		setPosts([...posts, newPost]);
+		setTitle('');
+		setBody('');
+	}
+
 	return (
 		<div className="App">
 			<form>
-				<MyInput type="text" placeholder="Название поста" />
-				<MyInput type="text" placeholder="Описание поста" />
-				<MyButton>Создать пост</MyButton>
+				<MyInput 
+					value={ title }
+					onChange={ e => setTitle(e.target.value) }
+					type="text" 
+					placeholder="Название поста"
+				/>
+				<MyInput
+					value={ body }
+					onChange={ e => setBody(e.target.value) }
+					type="text" 
+					placeholder="Описание поста" 
+				/>
+				<MyButton onClick={ addNewPost }>Создать пост</MyButton>
 			</form>
 			<PostList posts={ posts } title="Список постов" />
 		</div>
