@@ -22,7 +22,13 @@ const App = () => {
 	return (
 		<div className="App">
 			<PostForm create={ createPost }/>
-			<PostList remove={ removePost } posts={ posts } title="Список постов" />
+			{ // условная отрисовка
+				posts.length !== 0
+					?<PostList remove={ removePost } posts={ posts } title="Список постов" />
+					:<h2 style={ {textAlign: 'center'} }>Посты не найдены !!!</h2>
+
+			}
+			
 		</div>
 	);
 }
