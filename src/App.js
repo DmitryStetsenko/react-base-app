@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PostForm from './components/PostForm';
 import PostList from './components/PostList';
+import MySelect from './components/UI/select/MySelect';
 
 
 import './styles/App.css';
@@ -12,16 +13,31 @@ const App = () => {
         {id: 3, title: 'JavaScript3', body: 'description'}
     ]);
 
+	const [selectedSort, setSelectedSort] = useState('');
+
 	const createPost = (newPost) => {
 		setPosts([...posts, newPost]);
 	}
 	const removePost = (post) => {
-		setPosts(posts.filter(p => p.id != post.id));
+		setPosts(posts.filter(p => p.id !== post.id));
+	}
+
+	const sortPost = (post) => {
+		
 	}
 
 	return (
 		<div className="App">
 			<PostForm create={ createPost }/>
+			<hr style={ {margin: '20px 0'} } />
+			<MySelect 
+				onChange={ sortPost }
+				defaultValue="Сортировка"
+				options={[
+					{value: 'title', name: 'по названию'},
+					{value: 'body', name: 'по описанию'}
+				]}
+			/>
 			{ // условная отрисовка
 				posts.length !== 0
 					?<PostList remove={ removePost } posts={ posts } title="Список постов" />
