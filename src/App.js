@@ -8,9 +8,9 @@ import './styles/App.css';
 
 const App = () => {
 	const [posts, setPosts] = useState([
-        {id: 1, title: 'JavaScript1', body: 'description'},
-        {id: 2, title: 'JavaScript2', body: 'description'},
-        {id: 3, title: 'JavaScript3', body: 'description'}
+        {id: 1, title: 'JavaScript1', body: 'description1'},
+        {id: 2, title: 'JavaScript2', body: 'description3'},
+        {id: 3, title: 'JavaScript3', body: 'description2'}
     ]);
 
 	const [selectedSort, setSelectedSort] = useState('');
@@ -22,8 +22,9 @@ const App = () => {
 		setPosts(posts.filter(p => p.id !== post.id));
 	}
 
-	const sortPost = (post) => {
-		
+	const sortPost = (sort) => {
+		setSelectedSort(sort);
+		setPosts([...posts].sort((a, b) => a[sort].localeCompare(b[sort])));
 	}
 
 	return (
