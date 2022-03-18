@@ -1,0 +1,10 @@
+.mySelect {
+    padding: 5px 15px;
+    border: 1px solid teal;
+    color: teal;
+    width: 100%;
+}
+
+.mySelect:focus {
+    outline: 2px solid teal;
+}
