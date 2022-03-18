@@ -1,11 +1,9 @@
 import React, { useMemo, useState } from 'react';
 import PostForm from './components/PostForm';
 import PostList from './components/PostList';
-import MySelect from './components/UI/select/MySelect';
-import MyInput from './components/UI/input/MyInput';
-
 
 import './styles/App.css';
+import PostFilter from './components/PostFilter';
 
 const App = () => {
 	const [posts, setPosts] = useState([
@@ -14,21 +12,19 @@ const App = () => {
         {id: 3, title: 'JavaScript3', body: 'description2'}
     ]);
 	
-	const [selectedSort, setSelectedSort] = useState('');
-	const [searchQuery, setSearchQuery] = useState('');
+	const [filter, setFilter] = useState({sort: '', query: ''});
 
 	const sortedPost = useMemo(() => {
 		console.log('sorted')
-		if (selectedSort) {
-			return [...posts].sort((a, b) => a[selectedSort].localeCompare(b[selectedSort]));
+		if (filter.sort) {
+			return [...posts].sort((a, b) => a[filter.sort].localeCompare(b[filter.sort]));
 		}
-
 		return posts;
-	}, [selectedSort, posts]);
+	}, [filter.sort, posts]);
 
 	const sortedAndSearchPost = useMemo(() => {
-		return sortedPost.filter((post) => post.title.toLowerCase().includes(searchQuery.toLowerCase()));
-	}, [searchQuery, sortedPost]);
+		return sortedPost.filter((post) => post.title.toLowerCase().includes(filter.query.toLowerCase()));
+	}, [filter.query, sortedPost]);
 
 	const createPost = (newPost) => {
 		setPosts([...posts, newPost]);
@@ -37,30 +33,11 @@ const App = () => {
 		setPosts(posts.filter(p => p.id !== post.id));
 	}
 
-	const sortPost = (sort) => {
-		setSelectedSort(sort);
-	}
-
 	return (
 		<div className="App">
 			<PostForm create={ createPost }/>
 			<hr style={ {margin: '20px 0'} } />
-			<div>
-				<MyInput 
-					type="text"
-					value={ searchQuery }
-					onChange={ e =>  setSearchQuery(e.target.value)}
-				/>
-				<MySelect
-					value={ selectedSort }
-					onChange={ sortPost }
-					defaultValue="Сортировка"
-					options={[
-						{value: 'title', name: 'по названию'},
-						{value: 'body', name: 'по описанию'}
-					]}
-				/>
-			</div>
+			<PostFilter filter={ filter } setFilter={ setFilter } />
 			
 			{ // условная отрисовка
 				sortedAndSearchPost.length !== 0
