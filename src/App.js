@@ -7,6 +7,7 @@ import PostFilter from './components/PostFilter';
 import MyModal from './components/UI/modal/MyModal';
 import MyButton from './components/UI/button/MyButton';
 import { usePost } from './hooks/usePosts';
+import axios from 'axios';
 
 const App = () => {
 	const [posts, setPosts] = useState([
@@ -19,6 +20,11 @@ const App = () => {
 	const [modal, setModal] = useState(false);
 	const sortedAndSearchPost = usePost(posts, filter.sort, filter.query);
 
+	const fetchPosts = async () => {
+		const response = await axios.get('https://jsonplaceholder.typicode.com/posts');
+		setPosts(response.data);
+	}
+
 	const createPost = (newPost) => {
 		setPosts([...posts, newPost]);
 		setModal(false);
@@ -29,6 +35,7 @@ const App = () => {
 
 	return (
 		<div className="App">
+			<MyButton onClick={ fetchPosts }>Get posts</MyButton>
 			<MyButton onClick={ () => setModal(true) }>Создать пост...</MyButton>
 			<hr style={{margin: '10px 0'}}/>
 			<MyModal visible={ modal } setVisible={ setModal }>
