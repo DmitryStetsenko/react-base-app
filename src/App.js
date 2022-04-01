@@ -10,6 +10,7 @@ import MyModal from './components/UI/modal/MyModal';
 import MyButton from './components/UI/button/MyButton';
 
 import './styles/App.css';
+import Loader from './components/UI/loader/Loader';
 
 const App = () => {
 	const [posts, setPosts] = useState([
@@ -57,7 +58,7 @@ const App = () => {
 			<PostFilter filter={ filter } setFilter={ setFilter } />
 			{
 				isPostLoading
-					? <h1>Posts loading...</h1>
+					? <Loader />
 					: <PostList remove={ removePost } posts={ sortedAndSearchPost } title="Список постов" />
 			}
 		</div>
