@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { usePost } from './hooks/usePosts';
+import { useFetching } from './hooks/useFetching';
+import { getPageArray, getPageCount } from './utils/pages';
 import PostService from './API/PostService';
 
 import PostForm from './components/PostForm';
@@ -8,10 +10,9 @@ import PostFilter from './components/PostFilter';
 
 import MyModal from './components/UI/modal/MyModal';
 import MyButton from './components/UI/button/MyButton';
+import Loader from './components/UI/loader/Loader';
 
 import './styles/App.css';
-import Loader from './components/UI/loader/Loader';
-import { useFetching } from './hooks/useFetching';
 
 const App = () => {
 	const [posts, setPosts] = useState([
@@ -21,10 +22,17 @@ const App = () => {
     ]);
 	const [filter, setFilter] = useState({sort: '', query: ''});
 	const [modal, setModal] = useState(false);
+	const [totalPages, setTotalPages] = useState(0);
+	const [limit, setLimit] = useState(10);
+	const [page, setPage] = useState(1);
 	const sortedAndSearchPost = usePost(posts, filter.sort, filter.query);
+	let pagesArray = getPageArray(totalPages);
 	const [fetchPosts, isPostLoading, postError] = useFetching(async () => {
-		const posts = await PostService.getAll();
-		setPosts(posts);
+		const response = await PostService.getAll(limit, page);
+		const totalCount = response.headers['x-total-count'];
+
+		setPosts(response.data);
+		setTotalPages(getPageCount(totalCount, limit));
 	});
 
 	useEffect(() => {
@@ -56,6 +64,11 @@ const App = () => {
 					? <Loader />
 					: <PostList remove={ removePost } posts={ sortedAndSearchPost } title="Список постов" />
 			}
+			<div className="paginations">
+				{
+					pagesArray.map( p => <MyButton className="page">{ p }</MyButton> )
+				}
+			</div>
 		</div>
 	);
 }
