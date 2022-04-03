@@ -1,19 +1,28 @@
-.pBtn {
+.pagination {
+    margin-top: 20px;
+}
+
+.btn {
     padding: 5px 15px;
     color: teal;
     font-size: 14px;
     background: transparent;
     border: 1px solid teal;
     cursor: pointer;
+    margin: 5px 5px 5px 0;
+}
+.btn:last-child {
+    margin-right: 0;
 }
 
-.pBtn:hover {
+.btn:hover {
     cursor: pointer;
     border-color: orangered;
 }
 
-.pBtn.current {
+.btn.current {
     background: orangered;
     border-color: orangered;
     color: white;
+    font-weight: bold;
 }

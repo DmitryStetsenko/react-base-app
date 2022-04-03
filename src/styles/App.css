@@ -11,7 +11,7 @@ body {
 .App {
     max-width: 700px;
     margin: 0 auto;
-    padding-top: 20px;
+    padding: 20px 0;
 }
 
 .post {
@@ -49,4 +49,5 @@ body {
     transform: translateX(-100%);
     transition: all 500ms ease-in;
 }
+
 
