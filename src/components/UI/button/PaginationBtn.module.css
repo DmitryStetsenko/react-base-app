@@ -1,0 +1,19 @@
+.pBtn {
+    padding: 5px 15px;
+    color: teal;
+    font-size: 14px;
+    background: transparent;
+    border: 1px solid teal;
+    cursor: pointer;
+}
+
+.pBtn:hover {
+    cursor: pointer;
+    border-color: orangered;
+}
+
+.pBtn.current {
+    background: orangered;
+    border-color: orangered;
+    color: white;
+}

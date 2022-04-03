@@ -13,6 +13,7 @@ import MyButton from './components/UI/button/MyButton';
 import Loader from './components/UI/loader/Loader';
 
 import './styles/App.css';
+import PaginationBtn from './components/UI/button/PaginationBtn';
 
 const App = () => {
 	const [posts, setPosts] = useState([
@@ -66,7 +67,7 @@ const App = () => {
 			}
 			<div className="paginations">
 				{
-					pagesArray.map( p => <MyButton className="page">{ p }</MyButton> )
+					pagesArray.map( p => <PaginationBtn key={ p } active="true">{ p }</PaginationBtn> )
 				}
 			</div>
 		</div>
