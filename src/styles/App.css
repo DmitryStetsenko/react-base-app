@@ -8,10 +8,32 @@ body {
     font-family: sans-serif;
 }
 
+ul, li {
+    list-style-type: none;
+}
+
 .App {
     max-width: 700px;
     margin: 0 auto;
     padding: 20px 0;
+}
+
+.menu {}
+.menu__list {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+.menu__item {}
+.menu__item a {
+    display: block;
+    padding: 5px 10px;
+    text-decoration: none;
+    border: 1px solid transparent;
+    color: teal;
+}
+.menu__item a:hover {
+    border-color: teal;
 }
 
 .post {
