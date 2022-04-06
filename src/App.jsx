@@ -62,6 +62,7 @@ const App = () => {
 			</MyModal>
 
 			<PostFilter filter={ filter } setFilter={ setFilter } />
+			<Pagination totalPages={totalPages} page={page} changePage={changePage}/>
 			{ postError && <h1>Ошибка: { postError }</h1> }
 			{
 				isPostLoading
