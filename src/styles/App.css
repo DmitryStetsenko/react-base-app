@@ -51,7 +51,16 @@ ul, li {
 .post__contents {}
 
 
-.post__btns {}
+.post__btns {
+    display: flex;
+}
+.post__btns button {
+    margin-right: 5px;
+}
+.post__btns button:last-child {
+    margin-right: 0;
+}
+
 
 /* animations */
 .post-enter {
