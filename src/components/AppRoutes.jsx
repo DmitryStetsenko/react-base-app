@@ -1,21 +1,19 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import About from '../pages/About'; 
-import Posts from '../pages/Posts'; 
-import Error from '../pages/Error'; 
-import Home from '../pages/Home';
-import PostSinglePage from '../pages/PostSinglePage';
 import Layout from './Layout';
+import { routes } from '../router';
 
 const AppRoutes = () => {
     return (
         <Routes>
             <Route path="/" element={ <Layout /> }>
-                <Route index element={ <Home /> } />
-                <Route path="about" element={ <About /> }/>
-                <Route path="posts" element={ <Posts /> }/>
-                <Route path="posts/:postID" element={ <PostSinglePage /> }/>
-                <Route path="*" element={ <Error />}/>
+                {
+                    routes.map((route) => {
+                        return route.index 
+                                ? <Route key={ route.path } index element={ route.component } />
+                                : <Route key={ route.path } path={ route.path } element={ route.component } />
+                    })
+                }
             </Route>
         </Routes>
     );

@@ -42,7 +42,7 @@ const PostSinglePage = () => {
                         <ul className="comments__list">
                         {
                             comments.map((item) => {
-                                return <li className="comment">
+                                return <li key={ item.id } className="comment">
                                     <h5 className="comment__email">{ item.email }</h5>
                                     <p className="comment__body">{ item.body }</p>
                                 </li>
