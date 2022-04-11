@@ -20,6 +20,7 @@ const PostFilter = ({ filter, setFilter }) => {
                     {value: 'body', name: 'по описанию'}
                 ]}
             />
+            
         </div>
     );
 };

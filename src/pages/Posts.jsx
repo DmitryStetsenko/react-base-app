@@ -38,7 +38,7 @@ const Posts = () => {
 
 	useEffect(() => {
 		fetchPosts(limit, page);
-	}, []);
+	}, [limit, page]);
 
 	const createPost = (newPost) => {
 		setPosts([...posts, newPost]);
@@ -61,15 +61,14 @@ const Posts = () => {
 				<PostForm create={ createPost }/>
 			</MyModal>
 
-			<PostFilter filter={ filter } setFilter={ setFilter } />
-			<Pagination totalPages={totalPages} page={page} changePage={changePage}/>
+			<PostFilter filter={ filter } setFilter={ setFilter } limit={ limit } setLimit={ setLimit }/>
+			<Pagination totalPages={totalPages} page={page} changePage={changePage} limit={ limit } setLimit={ setLimit }/>
 			{ postError && <h1>Ошибка: { postError }</h1> }
 			{
 				isPostLoading
 					? <Loader />
 					: <PostList remove={ removePost } posts={ sortedAndSearchPost } title="Список постов" />
 			}
-			<Pagination totalPages={totalPages} page={page} changePage={changePage}/>
 		</>
 	);
 }
