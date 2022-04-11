@@ -18,7 +18,13 @@ ul, li {
     padding: 20px 0;
 }
 
-.menu {}
+.menu {
+    display: flex;
+    justify-content: flex-end;
+}
+.menu__logout {
+    margin-left: 20px;
+}
 .menu__list {
     display: flex;
     align-items: center;

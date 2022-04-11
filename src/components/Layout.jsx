@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Outlet } from 'react-router-dom';
+import { AuthContex } from '../context';
 import Navbar from './UI/Navbar/Navbar';
 
 const Layout = () => {
+    const {isAuth} = useContext(AuthContex);
+
     return (
         <>
-            <Navbar />
+            {isAuth && <Navbar />}
             <Outlet />
         </>
     );

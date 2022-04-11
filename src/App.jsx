@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import AppRoutes from './components/AppRoutes';
-import { routes } from './router';
+import { AuthContex } from './context';
 
 const App = () => {
+	const [isAuth, setIsAuth] = useState(false);
 	return (
-		<div className="App">
-			<AppRoutes />
-		</div>
-		
+		<AuthContex.Provider value={ {isAuth, setIsAuth} }>
+			<div className="App">
+				<AppRoutes />
+			</div>
+		</AuthContex.Provider>
 	);
 }
 
