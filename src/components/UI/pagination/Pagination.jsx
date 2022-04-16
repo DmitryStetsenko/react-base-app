@@ -11,6 +11,8 @@ const Pagination = ({totalPages, page, changePage, limit, setLimit}) => {
         setLimit(value);
     }
 
+    console.log(pagesArray);
+
     return (
         <div className={ pagination }>
             <MySelect
